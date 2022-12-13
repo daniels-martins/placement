@@ -11,13 +11,7 @@ class Application extends Model
 
     protected $guarded = ['id'];
 
-    protected $primaryKey = ['id', 'student_id', 'post_id'];
-
-   //  protected $primaryKey = ['student_id_post_id'];
-
-
-
-
+    protected $table = 'applications';
 
    // eloquent
     /**

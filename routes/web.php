@@ -1,6 +1,8 @@
 <?php
 
+use App\Models\Post;
 use App\Http\Middleware\HR;
+use Illuminate\Support\Carbon;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\PostController;
 use App\Http\Controllers\CompanyController;
@@ -27,6 +29,12 @@ Route::get('/', function () {
 
 
 require __DIR__ . '/auth.php';
+
+
+
+
+
+
 
 
 
@@ -60,9 +68,33 @@ Route::middleware(['auth', 'student'])->group(function () {
 
 Route::middleware(['auth', 'student'])->group(function () {
    Route::get('/application', [ApplicationController::class, 'index'])->name('application.index');
-   Route::post('/application', [ApplicationController::class, 'store'])->name('application.store');
-   Route::delete('/application', [ApplicationController::class, 'destroy'])->name('application.destroy');
+   Route::get('/application/create/{post}', [ApplicationController::class, 'create'])->name('application.create');
+   Route::post('/application/{post}', [ApplicationController::class, 'store'])->name('application.store');
+   Route::delete('/application/{post}', [ApplicationController::class, 'destroy'])->name('application.destroy');
 });
+
+
+
+
+Route::get('tinker', function () {
+
+
+   //   duplicate records
+   $firstPost = Post::first();
+   $no_of_duplicates = 20;
+   for ($i = 0; $i < $no_of_duplicates; $i++) {
+      $duplicate = $firstPost->replicate();
+      $duplicate->created_at = Carbon::now();
+      $duplicate->save();   # code...
+   }
+});
+
+
+
+
+
+
+
 
 
 
@@ -103,6 +135,7 @@ Route::middleware(['auth'])->group(function () {
 
 
 // company jobs
+
 Route::middleware(['auth', 'hr'])->group(function () {
    Route::get('post', [PostController::class, 'index'])->name('coy-post.index');
    Route::get('post/create', [PostController::class, 'create'])->name('coy-post.create');

@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Post;
+use App\Models\Application;
 use Illuminate\Http\Request;
 
 class PostController extends Controller
@@ -15,7 +16,10 @@ class PostController extends Controller
    public function index()
    {
       $job_listings = auth()->user()->getCoyHR()->posts;
-      return view('coy_posts.index', compact('job_listings'));
+      $this_coy_listings_id = auth()->user()->getCoyHR()->posts()->pluck('id');
+      // dd($this_coy_listings_id);
+      $coy_applications = Application::whereIn('post_id',  $this_coy_listings_id)->get();
+      return view('coy_posts.index', compact('coy_applications'));
    }
 
    /**
@@ -25,8 +29,7 @@ class PostController extends Controller
     */
    public function create(Request $request)
    {
-      $user = $request->user();
-      return view('coy_posts.main', compact('user'));
+      return view('coy_posts.main');
    }
 
    /**
@@ -64,7 +67,7 @@ class PostController extends Controller
     */
    public function edit(Post $post)
    {
-      dd('edit a post');
+      return view('coy_posts.edit_main', compact('post'));
    }
 
    /**
@@ -76,7 +79,10 @@ class PostController extends Controller
     */
    public function update(Request $request, Post $post)
    {
-      dd('edit a post');
+      // dd('effectively edit a post');
+      if ($post->update($request->except(['_token', '_method'])))
+         return back()->with('status', 'job-listing-updated');
+      return back()->with('status', 'job-listing-update-failed');
    }
 
    /**

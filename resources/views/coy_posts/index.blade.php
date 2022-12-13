@@ -1,3 +1,4 @@
+<?php use App\Models\Post; ?>
 <x-app-layout>
    <x-slot name="header">
       <h2 class="font-semibold text-xl text-gray-800 leading-tight">
@@ -21,22 +22,24 @@
             </div>
 
             <div class="p-10 grid gap-4 bg-gray-200 rounded-lg">
-               @foreach ($job_listings as $ad)
-                  
+               @foreach ($coy_applications as $ad)
+               @php
+               $post = Post::find($ad->post_id);
+               @endphp
                <div href="#"
                   class="block w-full p-6 bg-white border border-gray-200 rounded-lg shadow-md dark:bg-gray-800 dark:border-gray-700 dark:hover:bg-gray-700">
                   <h5 class="mb-2 text-xl font-lighter tracking-tight text-gray-900 dark:text-white">
-                     {{ $ad->job_title }}, Expert Needed </h5>
+                     {{ $post->job_title }}, Expert Needed </h5>
                   <small class="font-normal text-gray-700 dark:text-gray-400">
-                     {{ $ad->keywords }}.
+                     {{ $post->keywords }}.
                   </small>
                   <small>
-                     {{ $ad->responsibilities }}.
-                     {{ $ad->details }}.
-                     {{ $ad->requirements }}.
+                     {{ $post->responsibilities }}.
+                     {{ $post->details }}.
+                     {{ $post->requirements }}.
                   </small>
                   <div class="flex">
-                     <div class="w-32 mt-7 px-3 cursor-pointer rounded-sm text-white bg-green-600" title="click to view">{{ rand(10,100) }} applicants</div>
+                     <div class="w-32 mt-7 px-3 cursor-hand rounded-sm text-white bg-green-600" title="click to view">{{ rand(10,100) }} applicants</div>
                   </div>
                </div>
                @endforeach

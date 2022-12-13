@@ -8,7 +8,7 @@
    <div class="p-12">
       <div class="grid grid-cols-5 grid-flow-col gap-4">
          {{-- side bar --}}
-            @include('partials.coy_sidebar')
+         @include('partials.coy_sidebar')
          {{-- main content --}}
          <div class="col-span-4 rounded-lg">
 
@@ -16,12 +16,13 @@
                class="block w-full p-6 bg-white border border-gray-200 rounded-lg shadow-md dark:bg-gray-800 dark:border-gray-700 dark:hover:bg-gray-700">
                <h5 class="mb-2 text-xl font-lighter tracking-tight text-gray-900 dark:text-white">
                   Welcome, {{ ucfirst(auth()->user()->name ) }} </h5>
-               <p class="font-normal text-gray-700 dark:text-gray-400">  {{ ucfirst(auth()->user()->name ) }} jobs Listings.</p>
+               <p class="font-normal text-gray-700 dark:text-gray-400"> {{ ucfirst(auth()->user()->name ) }} jobs
+                  Listings.</p>
             </div>
 
             <div class="p-10 grid gap-4 bg-gray-200 rounded-lg">
                @foreach ($job_listings as $job)
-                   
+
                <div
                   class="block w-full p-6 bg-white border border-gray-200 rounded-lg shadow-md dark:bg-gray-800 dark:border-gray-700 dark:hover:bg-gray-700">
                   <h5 class="mb-2 text-xl font-lighter tracking-tight text-gray-900 dark:text-white">
@@ -31,20 +32,17 @@
                   </small>
                   <small>
                      {{ $job->responsibilities }}
-                     
-                     Lorem ipsum dolor sit amet consectetur adipisicing elit. Modi voluptatibus eum sunt,
-                     libero earum repellendus doloremque quos. Iusto rem temporibus facilis voluptatibus accusantium at,
-                     et recusandae, quae officiis magni ipsam in excepturi dolor aut, dolores commodi ea quaerat
-                     pariatur quod
-                     dolorum sapiente. Reprehenderit aperiam nam itaque autem odit nesciunt a ipsam, provident nisi
-                     quibusdam repellat
-                     nulla aliquam, dolor beatae...
+
+                     {{ $job->responsibilities }}
+                     {{ $job->details }}
+
                      {{ $job->pay_info }}
 
                   </small>
                   <div
                      class="w-24 mt-7 px-2 overflow-none button btn btn-primary cursor-pointer rounded-sm text-white bg-blue-600">
-                     Edit Listing</div>
+                     <a href="{{ route('coy-post.edit', $job->id) }}"> Edit Listing</a>
+                  </div>
                </div>
                @endforeach
 

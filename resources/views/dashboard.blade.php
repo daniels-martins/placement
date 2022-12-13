@@ -31,20 +31,15 @@
                   </small>
                   <small>
                      {{ $job->responsibilities }}
+                     {{ $job->details }}
 
-                     Lorem ipsum dolor sit amet consectetur adipisicing elit. Modi voluptatibus eum sunt,
-                     libero earum repellendus doloremque quos. Iusto rem temporibus facilis voluptatibus accusantium at,
-                     et recusandae, quae officiis magni ipsam in excepturi dolor aut, dolores commodi ea quaerat
-                     pariatur quod
-                     dolorum sapiente. Reprehenderit aperiam nam itaque autem odit nesciunt a ipsam, provident nisi
-                     quibusdam repellat
-                     nulla aliquam, dolor beatae...
+
                      {{ $job->pay_info }}
 
                   </small>
-                  <div
-                     class="w-16 px-2 mt-7 cursor-pointer rounded-sm text-white bg-blue-600">
-                     Apply</div>
+                  <div class="w-16 px-2 mt-7 cursor-pointer rounded-sm text-white bg-blue-600">
+                     <a href="{{ route('application.create', $job->id) }}"> Apply</a>
+                  </div>
                </div>
                @endforeach
 

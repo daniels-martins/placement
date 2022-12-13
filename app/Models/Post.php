@@ -7,9 +7,6 @@ use Illuminate\Database\Eloquent\Model;
 /**
  * 
  * This model represents the Job listings for various companies
- * 
- * 
- * 
  */
 class Post extends Model
 {
@@ -20,7 +17,7 @@ class Post extends Model
 
    public function students()
    {
-      return $this->hasMany(Student::class);
+      return $this->belongsToMany(Student::class, 'post_student');
    }
 
 

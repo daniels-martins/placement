@@ -15,8 +15,8 @@ return new class extends Migration
     public function up()
     {
         Schema::create('post_student', function (Blueprint $table) {
+           $table->unsignedBigInteger('post_id');
             $table->id();
-            $table->unsignedBigInteger('post_id');
             $table->unsignedBigInteger('student_id');
             $table->foreignIdFor(Application::class, 'application_id'); //pivot
             $table->timestamps();

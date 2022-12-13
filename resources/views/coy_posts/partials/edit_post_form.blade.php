@@ -1,5 +1,16 @@
 <section>
    <header>
+      @if (session('status') === 'job-listing-updated')
+      <p x-data="{ show: true }" x-show="show" x-transition x-init="setTimeout(() => show = false, 5000)"
+         class="text-sm text-gray-600">{{ __('Saved.') }}</p>
+      @endif
+
+      @if (session('status') === 'job-listing-update-failed')
+      <p x-data="{ show: true }" x-show="show" x-transition x-init="setTimeout(() => show = false, 5000)"
+         class="text-sm text-gray-600">{{ __('Saved.') }}</p>
+      @endif
+
+      
       <h2 class="text-lg font-medium text-gray-900">
          {{ __('Create New Job Listing') }}
       </h2>
@@ -13,9 +24,9 @@
       @csrf
    </form>
 
-   <form method="post" action="{{ route('coy-post.store') }}" class="mt-6 space-y-6" novalidate>
+   <form method="post" action="{{ route('coy-post.update', $post->id) }}" class="mt-6 space-y-6" novalidate>
       @csrf
-
+      @method('patch')
       {{-- Job Title --}}
       <div>
          <x-input-label for="job_title" :value="__('Job Title')" />
@@ -54,10 +65,10 @@
       <div>
 
          <div>
-            <x-input-label for="payment_info" :value="__('Payment info')" />
-            <textarea autocomplete="payment_info" name="payment_info" id="payment_info" rows="10"
-               class="mt-1 block w-full">{{ old('payment_info', $post->payment_info) }}</textarea>
-            <x-input-error class="mt-2" :messages="$errors->get('payment_info')" />
+            <x-input-label for="pay_info" :value="__('Payment info')" />
+            <textarea autocomplete="pay_info" name="pay_info" id="pay_info" rows="10"
+               class="mt-1 block w-full">{{ old('pay_info', $post->pay_info) }}</textarea>
+            <x-input-error class="mt-2" :messages="$errors->get('pay_info')" />
          </div>
       </div>
 
@@ -105,7 +116,7 @@
       <div class="flex items-center gap-4">
          <x-primary-button>{{ __('Save') }}</x-primary-button>
 
-         @if (session('status') === 'student-record-updated')
+         @if (session('status') === 'job-listing-updated')
          <p x-data="{ show: true }" x-show="show" x-transition x-init="setTimeout(() => show = false, 5000)"
             class="text-sm text-gray-600">{{ __('Saved.') }}</p>
          @endif
