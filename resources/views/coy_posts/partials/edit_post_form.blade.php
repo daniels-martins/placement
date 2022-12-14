@@ -12,11 +12,11 @@
 
       
       <h2 class="text-lg font-medium text-gray-900">
-         {{ __('Create New Job Listing') }}
+         {{ __('Modify this Job Ad') }}
       </h2>
 
       <p class="mt-1 text-sm text-gray-600">
-         {{ __("Put a new job out there and recruit for ") }} <b>{{ Auth::user()->name }}</b>
+         {{ __("Update this job out there and maintain data concurrency for ") }} <b>{{ Auth::user()->name }}</b>
       </p>
    </header>
 
