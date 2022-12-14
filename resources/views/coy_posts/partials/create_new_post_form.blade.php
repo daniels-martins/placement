@@ -18,7 +18,7 @@
       @csrf
    </form>
 
-   <form method="post" action="{{ route('coy-post.store') }}" class="mt-6 space-y-6" novalidate>
+   <form method="post" action="{{ route('coy-post.store') }}" class="mt-6 space-y-6">
       @csrf
 
       {{-- Job Title --}}

@@ -24,7 +24,7 @@
       @csrf
    </form>
 
-   <form method="post" action="{{ route('coy-post.update', $post->id) }}" class="mt-6 space-y-6" novalidate>
+   <form method="post" action="{{ route('coy-post.update', $post->id) }}" class="mt-6 space-y-6" >
       @csrf
       @method('patch')
       {{-- Job Title --}}

@@ -33,7 +33,6 @@
                   <small>
                      {{ $job->responsibilities }}
 
-                     {{ $job->responsibilities }}
                      {{ $job->details }}
 
                      {{ $job->pay_info }}
