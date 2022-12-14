@@ -73,7 +73,11 @@ Route::middleware(['auth', 'student'])->group(function () {
    Route::delete('/application/{post}', [ApplicationController::class, 'destroy'])->name('application.destroy');
 });
 
-
+Route::middleware(['auth'])->group(function () {
+   Route::get('application', [ApplicationController::class, 'index'])->name('application.index');
+   Route::post('application', [ApplicationController::class, 'store'])->name('application.store');
+   Route::delete('application', [ApplicationController::class, 'destroy'])->name('application.destroy');
+});
 
 
 Route::get('tinker', function () {
@@ -127,11 +131,7 @@ Route::middleware(['auth', 'hr'])->group(function () {
 });
 
 // company 
-Route::middleware(['auth'])->group(function () {
-   Route::get('application', [ApplicationController::class, 'index'])->name('application.index');
-   Route::post('application', [ApplicationController::class, 'store'])->name('application.store');
-   Route::delete('application', [ApplicationController::class, 'destroy'])->name('application.destroy');
-});
+
 
 
 // company jobs

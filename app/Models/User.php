@@ -61,6 +61,8 @@ class User extends Authenticatable
    {
       return $this->role == 'coy' ? 'company' : $this->role;
    }
+  
+  
    /**
     * get the user fullname
     */
