@@ -2,3 +2,4 @@ profile page for user : done
 
 Dashboard for user: done
 
+manyto many relationship should be properly implemented, check the the migration files and do accordingly
